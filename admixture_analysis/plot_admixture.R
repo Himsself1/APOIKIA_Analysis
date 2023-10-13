@@ -11,7 +11,8 @@ usage <- function() {
 list_of_packages <- c(
   "ggplot2", "reshape2",
   "forcats", "ggthemes",
-  "patchwork"
+  "patchwork", "gridExtra",
+  "grid"
 )
 
 for (i in list_of_packages) {
@@ -25,20 +26,13 @@ library(reshape2)
 library(forcats)
 library(ggthemes)
 library(patchwork)
+library(grid)
+library(gridExtra)
 
+# * Input files. Change before Use
 
-# * Reading the command line
-
-args = commandArgs(trailingOnly=TRUE)
-if (length(args) != 3) {
-  print("Incorrect number of arguments")
-  usage()
-  return(0)
-} else {
-  input_file <- args[1]
-  input_info <- args[2]
-  plot_folder <- args[3]
-}
+input_info <- "~/apoikia/EIGENSTRAT/new_dataset_28_07/apoikia.1240K.APOIKIA.ind"
+plot_folder <- "~/apoikia/APOIKIA_Analysis/admixture_analysis/plots"
 
 ## Check if plot folder exists
 if (dir.exists(plot_folder)) {
@@ -46,138 +40,162 @@ if (dir.exists(plot_folder)) {
   print("Created plot folder and parents")
 }
 
-# debugging
-input_file <- "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.3.Q"
-input_info <- "~/apoikia/EIGENSTRAT/new_dataset_28_07/apoikia.1240K.APOIKIA.ind"
-plot_folder <- "~/apoikia/APOIKIA_Analysis/admixture_analysis/plots"
-##
-
-# ** "Smart" plot naming
-splitted <- unlist(strsplit(input_file, "/"))
-split_1 <- splitted[length(splitted)]
-split_2 <- strsplit(split_1[[1]], ".", fixed = TRUE)[[1]]
-
-plot_prefix <- paste0(split_2[1:(length(split_2)-1)], collapse = '_')
-plot_full_name <- paste0(c(plot_folder,"/", plot_prefix, ".png"), collapse = "")
+vec_of_input_files <- c(
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.2.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.3.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.4.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.5.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.6.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.7.Q"
+)
 
 # * Read files and sculpt data
-dt <- read.table(input_file)
-onomata <- read.table(input_info)
 
-if (nrow(dt) != nrow(onomata)) {
-  part1 <- c("File: ", input_file, "has ", nrow(dt), " rows.")
-  part2 <- c("File: ", input_info, "has ", nrow(onomata), " rows.")
-  print(part1)
-  print(part2)
-  print("They should have the same number of rows")
-  return(0)
+read_data_fix_labels <- function(input_file, input_info, K) {
+  dt <- read.table(input_file)
+  onomata <- read.table(input_info)
+  print("Input Files:")
+  print(input_file)
+  if (nrow(dt) != nrow(onomata)) {
+    part1 <- c("File: ", input_file, "has ", nrow(dt), " rows.")
+    part2 <- c("File: ", input_info, "has ", nrow(onomata), " rows.")
+    print(part1)
+    print(part2)
+    print("They should have the same number of rows")
+    return(0)
+  }
+  ## print("Input Check")
+  sthles <- rep("", K)
+  for (kappa in 1:K) {
+    sthles[kappa] <- paste0(c("comp_", kappa), collapse = '')
+  }
+  colnames(dt) <- sthles
+  colnames(onomata) <- c("id", "sex", "Population")
+  ## Need to build a data frame with the following format
+  ## sampleID | popGroup | prob | loc
+  melted_dt <- melt(dt)
+  melted_dt$sampleID <- rep(1:nrow(dt), K)
+  colnames(melted_dt) <- c("popGroup", "prob", "sampleID")
+  melted_dt$loc <- rep(onomata$Population, K)
+  # ** Concatenate various populations in order to avoid clutter
+  new_pops <- onomata$Population
+  tenea <- grepl("Ten_Pel", onomata$Population, fixed = T)
+  amvrakia <- grepl("Amv_Epi", onomata$Population, fixed = T)
+  ammotopos <- grepl("Amm", onomata$Population, fixed = T)
+  italian_indexes <- grepl("Italy", onomata$Population, fixed = T)
+  sicilians_himera <- grepl("Himera", onomata$Population, fixed = T)
+  greek_non_minoan <- grepl("Greece", onomata$Population, fixed = T)
+  greek_minoan <- grepl("Minoan", onomata$Population, fixed = T)
+  n_macedonia <- grepl("Macedonia", onomata$Population, fixed = T)
+  turkey <- grepl("Turkey", onomata$Population, fixed = T)
+  croatia <- grepl("Croatia", onomata$Population, fixed = T)
+  montenegro <- grepl("Montenegro", onomata$Population, fixed = T)
+  bulgaria <- grepl("Bulgaria", onomata$Population, fixed = T)
+  albania <- grepl("Albania", onomata$Population, fixed = T)
+  serbia <- grepl("Serbia", onomata$Population, fixed = T)
+  romania_iron <- grepl("Romania", onomata$Population, fixed = T)
+  russia_yamnaya <- grepl("Russia", onomata$Population, fixed = T)
+  sicily_IA <- grepl("Sicily_IA", onomata$Population, fixed = T)
+  israel <- grepl("Israel", onomata$Population, fixed = T)
+  ## Assign the new indexes
+  new_pops[tenea] <- paste("Tenea (", sum(tenea), ")", sep = "", collapse = "")
+  new_pops[amvrakia] <- paste("Amvrakia (", sum(amvrakia), ")", sep = "", collapse = "")
+  new_pops[ammotopos] <- paste("Ammotopos (", sum(ammotopos), ")", sep = "", collapse = "")
+  new_pops[italian_indexes] <- paste("Italy (", sum(italian_indexes), ")", sep = "", collapse = "")
+  new_pops[sicilians_himera] <- paste("Himera (", sum(sicilians_himera), ")", sep = "", collapse = "")
+  new_pops[greek_non_minoan] <- paste("Greece_Non_Minoan (", sum(greek_non_minoan), ")", sep = "", collapse = "") # nolint
+  new_pops[greek_minoan] <- paste("Minoan (", sum(greek_minoan), ")", sep = "", collapse = "")
+  new_pops[n_macedonia] <- paste("N_Macedonia (", sum(n_macedonia), ")", sep = "", collapse = "")
+  new_pops[turkey] <- paste("Turkey_Conc (", sum(turkey), ")", sep = "", collapse = "")
+  new_pops[croatia] <- paste("Croatia_Conc (", sum(croatia), ")", sep = "", collapse = "")
+  new_pops[montenegro] <- paste("Montenegro (", sum(montenegro), ")", sep = "", collapse = "")
+  new_pops[bulgaria] <- paste("Bulgaria (", sum(bulgaria), ")", sep = "", collapse = "")
+  new_pops[albania] <- paste("Albania (", sum(albania), ")", sep = "", collapse = "")
+  new_pops[serbia] <- paste("Serbia (", sum(serbia), ")", sep = "", collapse = "")
+  new_pops[romania_iron] <- paste("Romania_Iron_Gates (", sum(romania_iron), ")", sep = "", collapse = "")
+  new_pops[russia_yamnaya] <- paste("Russia (", sum(russia_yamnaya), ")", sep = "", collapse = "")
+  new_pops[sicily_IA] <- paste("Sicily_IA (", sum(sicily_IA), ")", sep = "", collapse = "")
+  new_pops[israel] <- paste("Israel (", sum(israel), ")", sep = "", collapse = "")
+  skourtanioti_samples <- c(
+    "Aposelemis",
+    "GlykaNera_LBA",
+    "HgCharalambos_EMBA",
+    "Krousonas_LBA",
+    "Koukounaries_LBA",
+    "Lazarides_EBA",
+    "Lazarides_LBA",
+    "Mygdalia_LBA",
+    "NeaStyra_EBA",
+    "Tiryns_LBA",
+    "Tiryns_IA",
+    "Chania_LBA"
+  )
+  skourtanioti_indexes <- unlist(
+    sapply(skourtanioti_samples, function(x) {
+      which(grepl(x, onomata$Population, fixed = T))
+    })
+  )
+  new_pops[skourtanioti_indexes] <- paste("Greece_Skourtanioti (", length(skourtanioti_indexes), ")", sep = "", collapse = "")
+  melted_dt$concat_loc <- rep(new_pops, K)
+  print(summary(melted_dt))
+  return(melted_dt)
 }
 
-colnames(dt) <- c("comp_1", "comp_2", "comp_3")
-colnames(onomata) <- c("id", "sex", "Population")
+# * Make list of data for each K
+all_melted <- list()
 
-## Need to build a data frame with the following format
-## sampleID | popGroup | prob | loc
-## head(onomata)
-## head(dt)
+for (i in 1:length(vec_of_input_files)) {
+  all_melted[[i]] <- read_data_fix_labels(
+    vec_of_input_files[[i]],
+    input_info,
+    i+1
+  )
+}
 
-concat_groupID <- c(
-  rep("Tenea", 9),
-  rep("Amvrakia", 15),
-  rep("Ammotopos", 2),
-  onomata$Population[27:nrow(onomata)]
-)
-
-melted_dt <- melt(dt)
-melted_dt$sampleID <- rep(1:nrow(dt), 3)
-colnames(melted_dt) <- c("popGroup", "prob", "sampleID")
-melted_dt$loc <- rep(onomata$Population, 3)
-
-# ** Concatenate various populations in order to avoid clutter
-unique(melted_dt$loc)
-new_pops <- onomata$Population
-
-tenea <- grepl("Ten_Pel", onomata$Population, fixed = T)
-amvrakia <- grepl("Amv_Epi", onomata$Population, fixed = T)
-ammotopos <- grepl("Amm", onomata$Population, fixed = T)
-italian_indexes <- grepl("Italy", onomata$Population, fixed = T)
-sicilians_himera <- grepl("Himera", onomata$Population, fixed = T)
-greek_non_minoan <- grepl("Greece", onomata$Population, fixed = T)
-greek_minoan <- grepl("Minoan", onomata$Population, fixed = T)
-n_macedonia <- grepl("Macedonia", onomata$Population, fixed = T)
-turkey <- grepl("Turkey", onomata$Population, fixed = T)
-croatia <- grepl("Croatia", onomata$Population, fixed = T)
-montenegro <- grepl("Montenegro", onomata$Population, fixed = T)
-bulgaria <- grepl("Bulgaria", onomata$Population, fixed = T)
-albania <- grepl("Albania", onomata$Population, fixed = T)
-serbia <- grepl("Serbia", onomata$Population, fixed = T)
-romania_iron <- grepl("Romania", onomata$Population, fixed = T)
-russia_yamnaya <- grepl("Russia", onomata$Population, fixed = T)
-
-new_pops[tenea] <- "Tenea"
-new_pops[amvrakia] <- "Amvrakia"
-new_pops[ammotopos] <- "Ammotopos"
-new_pops[italian_indexes] <- "Italians_Conc"
-new_pops[sicilians_himera] <- "Himera"
-new_pops[greek_non_minoan] <- "Greece_Non_Minoan"
-new_pops[greek_minoan] <- "Minoan"
-new_pops[n_macedonia] <- "N_Macedonia"
-new_pops[turkey] <- "Turkey_Conc"
-new_pops[croatia] <- "Croatia_Conc"
-new_pops[montenegro] <- "Montenegro"
-new_pops[bulgaria] <- "Bulgaria"
-new_pops[albania] <- "Albania"
-new_pops[serbia] <- "Serbia"
-new_pops[romania_iron] <- "Romania_Iron_Gates"
-new_pops[russia_yamnaya] <- "Russia"
-
-skourtanioti_samples <- c(
-  "Aposelemis_LBA",
-  "GlykaNera_LBA",
-  "HgCharalambos_EMBA",
-  "Krousonas_LBA",
-  "Koukounaries_LBA",
-  "Lazarides_EBA",
-  "Lazarides_LBA",
-  "Mygdalia_LBA",
-  "NeaStyra_EBA",
-  "Tiryns_LBA",
-  "Tiryns_IA",
-  "Chania_LBA"
-)
-skourtanioti_indexes <- unlist(
-  sapply(skourtanioti_samples, function(x) {
-    which(grepl(x, onomata$Population, fixed = T))
-  }))
-new_pops[skourtanioti_indexes] <- "Greece_Skourtanioti"
-melted_dt$concat_loc <- rep(new_pops, 3)
-
+names(all_melted) <- 2:(i + 1)
 
 # * Prepare to plot
-head(melted_dt)
 
-## Plot idea was taken from Luis D. Verde Arregoitia's website
-## https://luisdva.github.io/rstats/model-cluster-plots/
-## facet_grid(~concat_loc, scales = "free", switch = "x") +
+plot_admixture <- function(dedomena, K) {
+  ## Plot idea was taken from Luis D. Verde Arregoitia's website
+  ## https://luisdva.github.io/rstats/model-cluster-plots/
+  k2plot <-
+    ggplot(dedomena, aes(factor(sampleID), prob, fill = as.factor(popGroup))) +
+    geom_col(color = "gray", width = 1, linewidth = 0.001) +
+    facet_wrap(~concat_loc, nrow = 2, scales = "free_x", strip.position = "bottom") +
+    theme_minimal() +
+    labs(
+      x = "Individuals",
+      title = paste0(c("K=", K), collapse = ""),
+      y = "Ancestry"
+    ) +
+    scale_y_continuous(expand = c(0, 0)) +
+    ## scale_x_discrete(expand = expand_scale(add = 1)) +
+    theme(
+      panel.spacing.x = unit(0.5, "lines"),
+      panel.spacing.y = unit(1, "lines"),
+      ## strip.text.x = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      panel.grid = element_blank()
+    ) +
+    scale_fill_gdocs(guide = "none")
+  print(paste0("Plot Finished. K = ", K), collapse = "")
+  return(k2plot)
+}
 
+all_plots <- lapply(1:length(all_melted), function(x) {
+  plot_admixture(all_melted[[x]], x + 1)
+})
 
-k2plot <-
-  ggplot(melted_dt, aes(factor(sampleID), prob, fill = factor(popGroup))) +
-  geom_col(color = "gray", width = 1, linewidth = 0.01) +
-  facet_wrap(~concat_loc, nrow = 2, scales = "free_x", switch = "x") +
-  theme_minimal() + labs(x = "Individuals", title = "K=3", y = "Ancestry") +
-  scale_y_continuous(expand = c(0, 0)) +
-  ## scale_x_discrete(expand = expand_scale(add = 1)) +
-  theme(
-    panel.spacing.x = unit(0.5, "lines"),
-    panel.spacing.y = unit(1, "lines"),
-    ## strip.text.x = element_blank(),
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    panel.grid = element_blank()
-  ) +
-  scale_fill_gdocs(guide = FALSE)
+for (i in 1:length(all_plots)) {
+  plot_name <- paste0(
+    c("~/apoikia/APOIKIA_Analysis/admixture_analysis/plots/ADMIXTURE_no_prunning_", (i+1), ".png"),
+    collapse = ""
+  )
+  print(plot_name)
+  png(filename = plot_name, width = 1440, height = 720)
+  print(all_plots[[i]])
+  dev.off()
+}
 
-png(plot_full_name, width = 1440)
-k2plot
-dev.off()

@@ -18,5 +18,13 @@ for K in 2 3 4 5 6 7 8 9 10; do
 done
 
 for K in 2 3 4 5 6 7 8 9 10; do
-    admixture32 --cv $PATH_TO_INPUT/apoikia.1240K.APOIKIA.LD.bed $K --seed time -j10 | tee $PATH_TO_OUTPUT/apoikia.1240K.LD_200_25_08.admixture.${K}.out;
+    admixture32 --cv $PATH_TO_INPUT/apoikia.1240K.APOIKIA.LD_200_25_08.bed $K --seed time -j10 | tee $PATH_TO_OUTPUT/apoikia.1240K.LD_200_25_08.admixture.${K}.out;
+done
+
+for K in 2 3 4 5 6 7 8 9 10; do
+    admixture32 --cv $PATH_TO_INPUT/apoikia.1240K.APOIKIA.LD_200_25_06.bed $K --seed time -j10 | tee $PATH_TO_OUTPUT/apoikia.1240K.LD_200_25_06.admixture.${K}.out;
+done
+
+for K in 2 3 4 5 6 7 8 9 10; do
+    admixture32 --cv $PATH_TO_INPUT/apoikia.1240K.APOIKIA.LD_200_25_08.bed $K --seed time -j10 | tee $PATH_TO_OUTPUT/apoikia.1240K.LD_200_25_08.admixture.${K}.out;
 done
