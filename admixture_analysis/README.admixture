@@ -1,0 +1,14 @@
+This file describes how the admixture analysis was performed in APOIKIA project.
+
+'convert_eigenstrat_to_ped.sh' took the initial dataset (EIGENSTRAT Format)
+and uses convertf (from EIGENSOFT) to convert initial EIGENSTRAT to ped.
+
+ADMIXTURE didn't like ped format so I used plink1.9 to convert ped to bed.
+Sites that were absent from all samples were removed with --geno 0.99.
+Additionally, 4 new datasets were created with various levels of LD pruning.
+Namely, the parameters used for pruning were: --indep-pairwise 200 50 0.8/0.6/0.4
+Code is available on https://github.com/Himsself1/APOIKIA_Analysis.git
+
+Individuals were concatenated to populations for visual clarity.
+This concatenation was mainly with geographical criteria.
+For a detailed view of all concatenations see Concatenation_Matrix
