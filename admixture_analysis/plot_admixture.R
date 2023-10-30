@@ -49,7 +49,142 @@ vec_of_input_files <- c(
   "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.7.Q"
 )
 
+vec_of_input_files_08 <- c(
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.2.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.3.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.4.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.5.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.6.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.7.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.8.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.9.Q"
+)
+
+vec_of_input_files_06 <- c(
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.2.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.3.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.4.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.5.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.6.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.7.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.8.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.9.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.10.Q"
+)
+
+vec_of_input_files_04 <- c(
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.2.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.3.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.4.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.5.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.6.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.7.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.8.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.9.Q",
+  "~/apoikia/APOIKIA_Analysis/admixture_analysis/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.10.Q"
+)
+
 # * Read files and sculpt data
+
+# ** Making a csv with concatenated names
+onomata <- read.table(input_info)
+colnames(onomata) <- c("id", "sex", "Population")
+
+tenea <- grepl("Ten_Pel", onomata$Population, fixed = T)
+amvrakia <- grepl("Amv_Epi", onomata$Population, fixed = T)
+ammotopos <- grepl("Amm", onomata$Population, fixed = T)
+italian_indexes <- grepl("Italy", onomata$Population, fixed = T)
+sicilians_himera <- grepl("Himera", onomata$Population, fixed = T)
+greek_non_minoan <- grepl("Greece", onomata$Population, fixed = T)
+greek_minoan <- grepl("Minoan", onomata$Population, fixed = T)
+n_macedonia <- grepl("Macedonia", onomata$Population, fixed = T)
+turkey <- grepl("Turkey", onomata$Population, fixed = T)
+croatia <- grepl("Croatia", onomata$Population, fixed = T)
+montenegro <- grepl("Montenegro", onomata$Population, fixed = T)
+bulgaria <- grepl("Bulgaria", onomata$Population, fixed = T)
+albania <- grepl("Albania", onomata$Population, fixed = T)
+serbia <- grepl("Serbia", onomata$Population, fixed = T)
+romania_iron <- grepl("Romania", onomata$Population, fixed = T)
+russia_yamnaya <- grepl("Russia", onomata$Population, fixed = T)
+sicily_IA <- grepl("Sicily_IA", onomata$Population, fixed = T)
+israel <- grepl("Israel", onomata$Population, fixed = T)
+
+skourtanioti_samples <- c(
+  "Aposelemis",
+  "GlykaNera_LBA",
+  "HgCharalambos_EMBA",
+  "Krousonas_LBA",
+  "Koukounaries_LBA",
+  "Lazarides_EBA",
+  "Lazarides_LBA",
+  "Mygdalia_LBA",
+  "NeaStyra_EBA",
+  "Tiryns_LBA",
+  "Tiryns_IA",
+  "Chania_LBA"
+)
+skourtanioti_indexes <- unlist(
+  sapply(skourtanioti_samples, function(x) {
+    which(grepl(x, onomata$Population, fixed = T))
+  })
+)
+
+poia_atoma <- c(
+  which(tenea),
+  which(amvrakia),
+  which(ammotopos),
+  which(italian_indexes),
+  which(sicilians_himera),
+  which(greek_non_minoan),
+  which(greek_minoan),
+  which(n_macedonia),
+  which(turkey),
+  which(croatia),
+  which(montenegro),
+  which(bulgaria),
+  which(albania),
+  which(serbia),
+  which(romania_iron),
+  which(russia_yamnaya),
+  which(sicily_IA),
+  which(israel),
+  skourtanioti_indexes
+)
+
+poia_atoma_pops <- c(
+  rep("Tenea", sum(tenea)),
+  rep("Amvrakia", sum(amvrakia)),
+  rep("Ammotopos", sum(ammotopos)),
+  rep("Italy", sum(italian_indexes)),
+  rep("Himera", sum(sicilians_himera)),
+  rep("Greece_Non_Minoan", sum(greek_non_minoan)),
+  rep("Minoan", sum(greek_minoan)),
+  rep("N_Macedonia", sum(n_macedonia)),
+  rep("Turkey_Conc", sum(turkey)),
+  rep("Croatia_Conc", sum(croatia)),
+  rep("Montenegro", sum(montenegro)),
+  rep("Bulgaria", sum(bulgaria)),
+  rep("Albania", sum(albania)),
+  rep("Serbia", sum(serbia)),
+  rep("Romania_Iron_Gates", sum(romania_iron)),
+  rep("Russia", sum(russia_yamnaya)),
+  rep("Sicily_IA", sum(sicily_IA)),
+  rep("Israel", sum(israel)),
+  rep("Greece_Skourtanioti", length(skourtanioti_indexes))  
+)
+
+concat_matrix <- data.frame(
+  Ind_ID = onomata$id[poia_atoma],
+  Population_Name = poia_atoma_pops
+)
+
+write.table(
+  concat_matrix,
+  "Concatenation_Matrix.csv",
+  col.names = T, row.names = F,
+  sep = ',', quote = F
+  )
+###
 
 read_data_fix_labels <- function(input_file, input_info, K) {
   dt <- read.table(input_file)
@@ -142,8 +277,8 @@ read_data_fix_labels <- function(input_file, input_info, K) {
 }
 
 # * Make list of data for each K
-all_melted <- list()
 
+all_melted <- list()
 for (i in 1:length(vec_of_input_files)) {
   all_melted[[i]] <- read_data_fix_labels(
     vec_of_input_files[[i]],
@@ -199,3 +334,89 @@ for (i in 1:length(all_plots)) {
   dev.off()
 }
 
+
+# * Same process for different prunnings
+
+# ** 200 25 08
+
+all_melted <- list()
+for (i in 1:length(vec_of_input_files_08)) {
+  all_melted[[i]] <- read_data_fix_labels(
+    vec_of_input_files_08[[i]],
+    input_info,
+    i+1
+  )
+}
+
+names(all_melted) <- 2:(i + 1)
+
+all_plots <- lapply(1:length(all_melted), function(x) {
+  plot_admixture(all_melted[[x]], x + 1)
+})
+
+for (i in 1:length(all_plots)) {
+  plot_name <- paste0(
+    c("~/apoikia/APOIKIA_Analysis/admixture_analysis/plots/ADMIXTURE_LD_200_25_08_", (i + 1), ".png"),
+    collapse = ""
+  )
+  print(plot_name)
+  png(filename = plot_name, width = 1440, height = 720)
+  print(all_plots[[i]])
+  dev.off()
+}
+
+# ** 200 25 06
+
+all_melted <- list()
+for (i in 1:length(vec_of_input_files_06)) {
+  all_melted[[i]] <- read_data_fix_labels(
+    vec_of_input_files_06[[i]],
+    input_info,
+    i+1
+  )
+}
+
+names(all_melted) <- 2:(i + 1)
+
+all_plots <- lapply(1:length(all_melted), function(x) {
+  plot_admixture(all_melted[[x]], x + 1)
+})
+
+for (i in 1:length(all_plots)) {
+  plot_name <- paste0(
+    c("~/apoikia/APOIKIA_Analysis/admixture_analysis/plots/ADMIXTURE_LD_200_25_06_", (i + 1), ".png"),
+    collapse = ""
+  )
+  print(plot_name)
+  png(filename = plot_name, width = 1440, height = 720)
+  print(all_plots[[i]])
+  dev.off()
+}
+
+# ** 200 25 04
+
+all_melted <- list()
+for (i in 1:length(vec_of_input_files_04)) {
+  all_melted[[i]] <- read_data_fix_labels(
+    vec_of_input_files_04[[i]],
+    input_info,
+    i+1
+  )
+}
+
+names(all_melted) <- 2:(i + 1)
+
+all_plots <- lapply(1:length(all_melted), function(x) {
+  plot_admixture(all_melted[[x]], x + 1)
+})
+
+for (i in 1:length(all_plots)) {
+  plot_name <- paste0(
+    c("~/apoikia/APOIKIA_Analysis/admixture_analysis/plots/ADMIXTURE_LD_200_25_04_", (i+1), ".png"),
+    collapse = ""
+  )
+  print(plot_name)
+  png(filename = plot_name, width = 1440, height = 720)
+  print(all_plots[[i]])
+  dev.off()
+}
