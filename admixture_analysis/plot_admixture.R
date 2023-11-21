@@ -109,6 +109,8 @@ russia_yamnaya <- grepl("Russia", onomata$Population, fixed = T)
 sicily_IA <- grepl("Sicily_IA", onomata$Population, fixed = T)
 israel <- grepl("Israel", onomata$Population, fixed = T)
 
+onomata$Population[italian_indexes]
+
 skourtanioti_samples <- c(
   "Aposelemis",
   "GlykaNera_LBA",
@@ -170,20 +172,21 @@ poia_atoma_pops <- c(
   rep("Russia", sum(russia_yamnaya)),
   rep("Sicily_IA", sum(sicily_IA)),
   rep("Israel", sum(israel)),
-  rep("Greece_Skourtanioti", length(skourtanioti_indexes))  
+  rep("Greece_Skourtanioti", length(skourtanioti_indexes))
 )
 
 concat_matrix <- data.frame(
   Ind_ID = onomata$id[poia_atoma],
-  Population_Name = poia_atoma_pops
+  Population_Name = poia_atoma_pops,
+  Original_name = onomata$Population[poia_atoma]
 )
 
 write.table(
   concat_matrix,
-  "Concatenation_Matrix.csv",
+  "/home/aggeliki/apoikia/APOIKIA_Analysis/admixture_analysis/Concatenation_Matrix.csv",
   col.names = T, row.names = F,
   sep = ',', quote = F
-  )
+)
 ###
 
 read_data_fix_labels <- function(input_file, input_info, K) {
