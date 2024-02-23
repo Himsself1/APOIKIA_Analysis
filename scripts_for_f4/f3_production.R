@@ -372,7 +372,6 @@ ind_f3_tenea_roman <- do.call(rbind, lapply(
     )
   }
 ))
-
 all_tenea_roman <- rbind(f3_tenea_roman, ind_f3_tenea_roman)
 
 # ** Saving data
@@ -391,7 +390,7 @@ save_statistics <- function(f3_output, file_name) {
   ##   p = unlist(f3_output[, 7]),
   ##   SNPs = unlist(f3_output[, 8])
   ## )
-  write.table(f3_output, file_name, quote = FALSE, sep = '\t')
+  write.table(f3_output, file_name, quote = FALSE, sep = '\t', row.names = FALSE)
 }
 
 save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/f3_ammotopos.tsv")
@@ -436,10 +435,13 @@ plot_general_with_inds <- function(f3_output) {
   f3_output_2 <- f3_output[!(f3_output$pop2 == f3_output$pop3), ]
   ## reorder factor levels in order to be plotted nicely
   temp_reordered <- reorder(f3_output_2$pop3[f3_output_2$ID == "Population"],
-                            f3_output_2$est[f3_output_2$ID == "Population"],
-                            mean, decreasing = FALSE)
+    f3_output_2$est[f3_output_2$ID == "Population"],
+    mean,
+    decreasing = FALSE
+  )
   f3_output_2$pop3 <- factor(f3_output_2$pop3,
-                             levels = levels(temp_reordered), ordered = TRUE)
+    levels = levels(temp_reordered), ordered = TRUE
+  )
   ## Make population point have different alpha and color
   pop_indexes <- f3_output_2$ID == "Population"
   alpha <- rep(3, nrow(f3_output_2))
@@ -452,12 +454,12 @@ plot_general_with_inds <- function(f3_output) {
   f3_output_2$point_size <- point_size
   ########################################################
   to_plot <- ggplot(f3_output_2, aes(
-    x = est, y = pop3,
+    x = est, y = pop3, group = ID,
     color = col_and_fill, fill = col_and_fill
   )) +
-    geom_point(size = point_size, position = position_dodge(width = 0.2)) +
+    geom_point(size = point_size, position = position_dodge(width = 0.3)) +
     geom_errorbar(aes(xmin = est - se, xmax = est + se),
-      position = position_dodge(width = 0.1),
+      position = position_dodge(width = 0.3),
       size = 0.4, width = 0.4, alpha = alpha
     ) +
     labs(title = paste0(f3_output_2$pop2[1])) +
