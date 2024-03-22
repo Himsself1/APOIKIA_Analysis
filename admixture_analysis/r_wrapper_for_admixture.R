@@ -13,9 +13,9 @@ registerDoMC(cores)
 ## PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_28_07/trimmed_data"
 ## PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs"
 
-PATH_TO_INPUT="/home/aggeliki/apoikia/EIGENSTRAT/dataset_02_11"
-PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/dataset_02_11/trimmed_data"
-PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs/dataset_02_11/haploid"
+PATH_TO_INPUT="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT"
+PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/trimmed_data"
+PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs/dataset_01_02_2024/haploid"
 
 # * LD 08
 
@@ -30,7 +30,7 @@ admixture_output_names <- c()
 for(i in 2:cores){
   temp_input <- paste0(c(
     PATH_TO_TRIMMED,
-    "/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.bed ",
+    "/apoikia.1240K.ANCIENT.LD_200_25_08.trimmed.bed ",
     i
   ), collapse = "")
   temp_output <- paste0(c(
@@ -44,11 +44,11 @@ for(i in 2:cores){
 
 # ** Runs ADMIXTURE for specific trimmings
 
-foreach(i in 2:cores) %dopar% {
+foreach(i = 2:cores) %dopar% {
   cmd <- noquote(paste0(c(
     "admixture32 --cv ",
     ## PATH_TO_TRIMMED,
-    ## "/apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.bed ",
+    ## "/apoikia.1240K.ANCIENT.LD_200_25_08.trimmed.bed ",
     ## i,
     admixture_input_names[i-1],
     ' --haploid="*" --seed time | tee ',
@@ -66,10 +66,10 @@ foreach(i in 2:cores) %dopar% {
 for (i in 1:length(admixture_output_names)) {
   cmd <- noquote(paste0(c(
     "grep -h CV ",
-    admixture_output_name[i]
+    admixture_output_names[i],
     " | awk '{print $3 $4}' | sed 's/(K=\\([0-9]*\\)):\\([0-9]\\.[0-9]*\\)/\\1,\\2/g'",
     ## R needs to escape the escape character ('\') in order ot print it
-    " >> CV_errors_apoikia.1240K.APOIKIA.LD_200_25_08.trimmed.csv"
+    " >> CV_errors_apoikia.1240K.ANCIENT.LD_200_25_08.trimmed.csv"
   ), collapse = ""))
   system(cmd)
 }
@@ -87,7 +87,7 @@ admixture_output_names <- c()
 for(i in 2:cores){
   temp_input <- paste0(c(
     PATH_TO_TRIMMED,
-    "/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.bed ",
+    "/apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.bed ",
     i
   ), collapse = '')
   temp_output <- paste0(c(
@@ -101,11 +101,11 @@ for(i in 2:cores){
 
 # ** Runs ADMIXTURE for specific trimmings
 
-foreach(i in 2:cores) %dopar% {
+foreach(i = 2:cores) %dopar% {
   cmd <- noquote(paste0(c(
     "admixture32 --cv ",
     ## PATH_TO_TRIMMED,
-    ## "/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.bed ",
+    ## "/apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.bed ",
     ## i,
     admixture_input_names[i-1],
     ' --haploid="*" --seed time | tee ',
@@ -123,10 +123,10 @@ foreach(i in 2:cores) %dopar% {
 for (i in 1:length(admixture_output_names)) {
   cmd <- noquote(paste0(c(
     "grep -h CV ",
-    admixture_output_name[i]
+    admixture_output_names[i],
     " | awk '{print $3 $4}' | sed 's/(K=\\([0-9]*\\)):\\([0-9]\\.[0-9]*\\)/\\1,\\2/g'",
     ## R needs to escape the escape character ('\') in order ot print it
-    " >> CV_errors_apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.csv"
+    " >> CV_errors_apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.csv"
   ), collapse = ""))
   system(cmd)
 }
@@ -144,7 +144,7 @@ admixture_output_names <- c()
 for(i in 2:cores){
   temp_input <- paste0(c(
     PATH_TO_TRIMMED,
-    "/apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.bed ",
+    "/apoikia.1240K.ANCIENT.LD_200_25_04.trimmed.bed ",
     i
   ), collapse = '')
   temp_output <- paste0(c(
@@ -162,7 +162,7 @@ foreach(i = 2:cores) %dopar% {
   cmd <- noquote(paste0(c(
     "admixture32 --cv ",
     ## PATH_TO_TRIMMED,
-    ## "/apoikia.1240K.APOIKIA.LD_200_25_06.trimmed.bed ",
+    ## "/apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.bed ",
     ## i,
     admixture_input_names[i-1],
     ' --haploid="*" --seed time | tee ',
@@ -183,7 +183,7 @@ for(i in 1:length(admixture_output_names)) {
     admixture_output_names[i],
     " | awk '{print $3 $4}' | sed 's/(K=\\([0-9]*\\)):\\([0-9]\\.[0-9]*\\)/\\1,\\2/g'",
     ## R needs to escape the escape character ('\') in order ot print it
-    " >> CV_errors_apoikia.1240K.APOIKIA.LD_200_25_04.trimmed.csv"
+    " >> CV_errors_apoikia.1240K.ANCIENT.LD_200_25_04.trimmed.csv"
   ), collapse = ""))
   system(cmd)
 }
