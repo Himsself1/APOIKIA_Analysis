@@ -7,7 +7,9 @@ library(admixr)
 library(Hmisc)
 library(admixtools)
 library(ggplot2)
-library("stringr")
+library(stringr)
+
+
 
 # * Reading Data and preprocessing
 
