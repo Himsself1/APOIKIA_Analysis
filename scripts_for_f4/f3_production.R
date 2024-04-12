@@ -435,13 +435,14 @@ plot_general <- function(f3_output) {
   to_plot <- ggplot(f3_output_2, aes(x = est, y = pop3)) +
     geom_point() +
     geom_errorbar(aes(xmin = est - se, xmax = est + se), size = 0.4, width = 0.4) +
-    labs(title = paste0(f3_output_2$pop2[1])) +
+    labs(title = paste0(f3_output_2$pop2[1]), x = "F3") +
     theme(
       legend.position = "none",
       title = element_text(size = 20, hjust = 0.5),
       axis.text.y = element_text(size = 16)
     ) +
     scale_y_discrete(
+      name = element_blank(),
       labels = function(x) {
         sub("_([0-9]+[a-z|A-Z]*[-|_][0-9]+)", "\n\\1", x, fixed = FALSE)
       }
@@ -484,13 +485,14 @@ plot_general_with_inds <- function(f3_output) {
       color = col_and_fill,
       size = 0.4, width = 0.4, alpha = alpha
     ) +
-    labs(title = paste0(f3_output_2$pop2[1])) +
+    labs(title = paste0(f3_output_2$pop2[1]), x = "F3") +
     theme(
       legend.position = "right",
       title = element_text(size = 20, hjust = 0.5),
       axis.text.y = element_text(size = 16)
     ) +
     scale_y_discrete(
+      name = element_blank(),
       labels = function(x) {
         sub("_([0-9]+[a-z|A-Z]*[-|_][0-9]+)", "\n\\1", x, fixed = FALSE)
       }

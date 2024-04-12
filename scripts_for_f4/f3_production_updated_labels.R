@@ -432,13 +432,14 @@ plot_general <- function(f3_output) {
   to_plot <- ggplot(f3_output_2, aes(x = est, y = pop3)) +
     geom_point() +
     geom_errorbar(aes(xmin = est - se, xmax = est + se), size = 0.4, width = 0.4) +
-    labs(title = paste0(f3_output_2$pop2[1])) +
+    labs(title = paste0(f3_output_2$pop2[1]), x = "F3") +
     theme(
       legend.position = "none",
       title = element_text(size = 20, hjust = 0.5),
       axis.text.y = element_text(size = 16)
     ) +
     scale_y_discrete(
+      name = element_blank(),
       labels = function(x) {
         sub("_([0-9]+[a-z|A-Z]*[-|_][0-9]+)", "\n\\1", x, fixed = FALSE)
       }
@@ -481,13 +482,15 @@ plot_general_with_inds <- function(f3_output) {
       color = col_and_fill,
       size = 0.4, width = 0.4, alpha = alpha
     ) +
-    labs(title = paste0(f3_output_2$pop2[1])) +
+    labs(title = paste0(gsub("_", " ", f3_output_2$pop2[1])),
+         x = "F3") +
     theme(
       legend.position = "right",
       title = element_text(size = 20, hjust = 0.5),
       axis.text.y = element_text(size = 16)
     ) +
     scale_y_discrete(
+      name = element_blank(),
       labels = function(x) {
         sub("_([0-9]+[a-z|A-Z]*[-|_][0-9]+)", "\n\\1", x, fixed = FALSE)
       }
@@ -524,53 +527,53 @@ inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
 # *** Population Plots
 
-png("~/apoikia/f3_outputs/plots/f3_ammotopos_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_ammotopos_updated_labels.png", height = 1024, width = 1240)
 plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_arch_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_arch_updated_labels.png", height = 1024, width = 1240)
 plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_arch_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_arch_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_class_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_class_updated_labels.png", height = 1024, width = 1240)
 plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_hel_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_hel_updated_labels.png", height = 1024, width = 1240)
 plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_early_roman_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_early_roman_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_early_roman
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_roman_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_roman_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_roman
 dev.off()
 
 # *** Individual + Population Plots
 
-png("~/apoikia/f3_outputs/plots/f3_ammotopos_with_indiduals_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_ammotopos_with_indiduals_updated_labels.png", height = 1024, width = 1240)
 inds_plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_arch_with_indiduals_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_arch_with_indiduals_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_class_with_indiduals_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_class_with_indiduals_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_hel_with_indiduals_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_hel_with_indiduals_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_roman_with_indiduals_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_tenea_roman_with_indiduals_updated_labels.png", height = 1024, width = 1240)
 inds_plot_tenea_roman
 dev.off()
 
@@ -937,52 +940,52 @@ inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
 # *** Population Plots
 
-png("~/apoikia/f3_outputs/plots/f3_ammotopos_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_ammotopos_han_updated_labels.png", height = 1024, width = 1240)
 plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_arch_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_arch_han_updated_labels.png", height = 1024, width = 1240)
 plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_arch_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_arch_han_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_class_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_class_han_updated_labels.png", height = 1024, width = 1240)
 plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_hel_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_amv_hel_han_updated_labels.png", height = 1024, width = 1240)
 plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_early_roman_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_early_roman_han_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_early_roman
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_roman_han_updated_labels.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/f3_tenea_roman_han_updated_labels.png", height = 1024, width = 1240)
 plot_tenea_roman
 dev.off()
 
 # *** Individual + Population Plots
 
-png("~/apoikia/f3_outputs/plots/f3_ammotopos_with_indiduals_han_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_ammotopos_with_indiduals_han_updated_labels.png", height = 1024, width = 1240)
 inds_plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_arch_with_indiduals_han_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_arch_with_indiduals_han_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_class_with_indiduals_han_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_class_with_indiduals_han_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_amv_hel_with_indiduals_han_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_amv_hel_with_indiduals_han_updated_labels.png", height = 1024, width = 1240)
 inds_plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/f3_tenea_roman_with_indiduals_han_updated_labels.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/f3_tenea_roman_with_indiduals_han_updated_labels.png", height = 1024, width = 1240)
 inds_plot_tenea_roman
 dev.off()
