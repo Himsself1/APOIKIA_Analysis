@@ -14,8 +14,9 @@ registerDoMC(cores)
 ## PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs"
 
 PATH_TO_INPUT="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT"
-PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/trimmed_data"
-PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs/dataset_01_02_2024/haploid"
+PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/trimmed_data_maf_005"
+## PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs/dataset_01_02_2024/haploid"
+PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs_rerun/dataset_01_02_2024/haploid"
 
 # * LD 08
 
