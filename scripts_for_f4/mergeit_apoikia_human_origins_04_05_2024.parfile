@@ -1,0 +1,11 @@
+geno1: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia.1240K.ANCIENT.geno
+snp1: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia.1240K.ANCIENT.snp
+ind1: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia.1240K.ANCIENT.ind
+
+geno2: /home/aggeliki/apoikia/EIGENSTRAT/HumanOriginsPublic2068.geno
+snp2: /home/aggeliki/apoikia/EIGENSTRAT/HumanOriginsPublic2068.snp
+ind2: /home/aggeliki/apoikia/EIGENSTRAT/HumanOriginsPublic2068.ind
+
+genooutfilename: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba.geno
+snpoutfilename: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba.snp
+indoutfilename: /home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba.ind
