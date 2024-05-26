@@ -458,19 +458,19 @@ save_statistics <- function(f3_output, file_name) {
   write.table(f3_output, file_name, quote = FALSE, sep = '\t', row.names = FALSE)
 }
 
-save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_ammotopos.tsv")
-save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_archaic.tsv")
-save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_roman.tsv")
-save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_archaic.tsv")
-save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_early_roman.tsv")
-save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_classical.tsv")
-save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_hellenistic.tsv")
+save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_ammotopos.tsv")
+save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_archaic.tsv")
+save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_roman.tsv")
+save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_archaic.tsv")
+save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_early_roman.tsv")
+save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_classical.tsv")
+save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_hellenistic.tsv")
 
-save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_ammotopos.tsv")
-save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_archaic.tsv")
-save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_tenea_roman.tsv")
-save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_classical.tsv")
-save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_hellenistic.tsv")
+save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_ammotopos.tsv")
+save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_archaic.tsv")
+save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_roman.tsv")
+save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_classical.tsv")
+save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_hellenistic.tsv")
 
 # * Plots
 
@@ -1011,19 +1011,19 @@ save_statistics <- function(f3_output, file_name) {
   write.table(f3_output, file_name, quote = FALSE, sep = '\t', row.names = FALSE)
 }
 
-save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_ammotopos_han.tsv")
-save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_archaic_han.tsv")
-save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_roman_han.tsv")
-save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_archaic_han.tsv")
-save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_tenea_early_roman_han.tsv")
-save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_classical_han.tsv")
-save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024f3_amv_hellenistic_han.tsv")
+save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_ammotopos_han.tsv")
+save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_archaic_han.tsv")
+save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_roman_han.tsv")
+save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_archaic_han.tsv")
+save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_early_roman_han.tsv")
+save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_classical_han.tsv")
+save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_hellenistic_han.tsv")
 
-save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_ammotopos_han.tsv")
-save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_archaic_han.tsv")
-save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_tenea_roman_han.tsv")
-save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_classical_han.tsv")
-save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024ind_f3_amv_hellenistic_han.tsv")
+save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_ammotopos_han.tsv")
+save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_archaic_han.tsv")
+save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_roman_han.tsv")
+save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_classical_han.tsv")
+save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_hellenistic_han.tsv")
 
 # * Plots
 

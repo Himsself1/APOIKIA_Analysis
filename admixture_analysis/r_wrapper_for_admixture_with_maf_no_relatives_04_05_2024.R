@@ -2,6 +2,7 @@
 ## install.packages("doMC")
 
 ## R wrapper for running haploid admixture in parallel
+## This script runs admixture for all trimmings and gathers CV errors
 
 library(foreach)
 library(doMC)
@@ -9,7 +10,6 @@ library(doMC)
 cores <- 10
 registerDoMC(cores)
 
-## PATH_TO_INPUT="/home/aggeliki/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT"
 PATH_TO_TRIMMED="/home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/trimmed_data_maf_005_no_relatives"
 PATH_TO_OUTPUT="/home/aggeliki/apoikia/admixture_logs/dataset_04_05_2024/haploid_with_maf_no_relatives"
 
