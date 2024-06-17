@@ -288,7 +288,7 @@ for (q.file.name in q.files) {
 
   plot_file_name <- paste0(plot_folder, "/", prefix, kappa, ".png", collapse = "")
   print(plot_file_name)
-  png(plot_file_name, height = 3072, width = 1440)
+  png(plot_file_name, height = 3072, width = 2160)
   print(k2plot)
   dev.off()
 }
