@@ -14,7 +14,7 @@ Namely, the parameters used for pruning were: --indep-pairwise 200 50 0.8/0.6/0.
 
 "r_wrapper_for_admixture_with_maf_no_relatives_04_05_2024.R" runs ADMIXTURE
 analysis for all configurations described above. ADMIXTURE was run for
-K = {1-10}.
+K = {2-10}.
 Along with ADMIXTURE outputs, a file containing CV errors is returned for each
 configurations on the original dataset.
 

@@ -23,7 +23,11 @@ flags <- read.table("~/apoikia/APOIKIA_Analysis/scripts_for_f4/Updated_Labels_fo
 )
 
 ## Create the output directory
-dir.create("~/apoikia/f3_outputs/plots/dataset_04_05_2024/", recursive = F)
+## dir.create("~/apoikia/f3_outputs/plots/dataset_04_05_2024/", recursive = F)
+dir.create("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup", recursive = F)
+dir.create("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup", recursive = F)
+
+
 
 # * Function for calculation f3 scores
 
@@ -578,61 +582,61 @@ inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
 # *** Population Plots
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_ammotopos.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_ammotopos.png", height = 1240, width = 1240)
 plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_arch.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_arch.png", height = 1240, width = 1240)
 plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_arch.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_arch.png", height = 1240, width = 1240)
 plot_tenea_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_class.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_class.png", height = 1240, width = 1240)
 plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_hel.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_hel.png", height = 1240, width = 1240)
 plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_hel.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_hel.png", height = 1240, width = 1240)
 plot_tenea_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_early_roman.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_early_roman.png", height = 1240, width = 1240)
 plot_tenea_early_roman
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_roman.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_roman.png", height = 1240, width = 1240)
 plot_tenea_roman
 dev.off()
 
 # *** Individual + Population Plots
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_ammotopos_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_ammotopos_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_arch_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_arch_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_class_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_class_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_hel_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_amv_hel_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_hel_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_hel_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_tenea_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_roman_with_indiduals.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/yoruba_outgroup/f3_tenea_roman_with_indiduals.png", height = 1240, width = 1240)
 inds_plot_tenea_roman
 dev.off()
 
@@ -1049,60 +1053,60 @@ inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
 # *** Population Plots
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_ammotopos_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_ammotopos_han.png", height = 1240, width = 1240)
 plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_arch_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_arch_han.png", height = 1240, width = 1240)
 plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_arch_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_arch_han.png", height = 1240, width = 1240)
 plot_tenea_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_class_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_class_han.png", height = 1240, width = 1240)
 plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_hel_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_hel_han.png", height = 1240, width = 1240)
 plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_hel_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_hel_han.png", height = 1240, width = 1240)
 plot_tenea_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_early_roman_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_early_roman_han.png", height = 1240, width = 1240)
 plot_tenea_early_roman
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_roman_han.png", height = 1024, width = 860)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_roman_han.png", height = 1240, width = 1240)
 plot_tenea_roman
 dev.off()
 
 # *** Individual + Population Plots
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_ammotopos_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_ammotopos_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_ammotopos
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_arch_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_arch_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_amv_archaic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_class_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_class_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_amv_classical
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_amv_hel_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_amv_hel_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_amv_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_hel_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_hel_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_tenea_hellenistic
 dev.off()
 
-png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/f3_tenea_roman_with_indiduals_han.png", height = 1024, width = 1080)
+png("~/apoikia/f3_outputs/plots/dataset_04_05_2024/han_outgroup/f3_tenea_roman_with_indiduals_han.png", height = 1240, width = 1240)
 inds_plot_tenea_roman
 dev.off()
