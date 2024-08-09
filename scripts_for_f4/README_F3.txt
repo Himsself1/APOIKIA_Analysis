@@ -17,17 +17,19 @@ discarded).
 
 F3 were calculated as follows: (YRI, TARGET) * (YRI, SOURCE)
 where TARGET is one of the apoikia sequenced populations and
-SOURCE is a populations as described in "Labels_for_f3.tsv".
+SOURCE is a populations as described in "Updated_Labels_for_f3.tsv".
 YRI were individuals from Yoruba population of the
 one-thousand-genomes project.
 Results were saved in "f3_TARGET.tsv" and plots were saved  
 in f3_TARGET.png
 
-"Labels_for_f3.tsv" demonstratess the individuals that were included
+"Upadted_Labels_for_f3.tsv" demonstratess the individuals that were included
 in the analysis, and the populations that they were grouped in.
 
 Additional F3 results were calculated seperately for each individual
 in the TARGET populations, except for populations "Tenea Archaic"
-and "Tenea Early Roman" that only had one individual anyway.
+and "Tenea Early Roman" that only had one individual.
 Results were saved in ind_f3_TARGET.tsv and plots were saved
 in f3_TARGET_with_individuals.png
+
+
