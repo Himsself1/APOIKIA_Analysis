@@ -16,7 +16,7 @@ prefix_of_data <- "/home/aggeliki/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_
 ## yor = read_packedancestrymap("~/apoikia/EIGENSTRAT/HumanOriginsPublic2068", pops = "Yoruba")
 ## apoikia_dataset = read_packedancestrymap("~/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia.1240K.ANCIENT")
 
-flags <- read.table("~/apoikia/APOIKIA_Analysis/scripts_for_f4/Updated_Labels_for_f3.csv",
+flags <- read.table("~/apoikia/APOIKIA_Analysis/scripts_for_f4/Labels_for_f3.csv",
   sep = ",", header = T, na.strings = c("NA", "")
 )
 
