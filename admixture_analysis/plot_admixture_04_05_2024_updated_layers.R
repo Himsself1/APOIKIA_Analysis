@@ -9,26 +9,16 @@ list_of_packages <- c(
   "patchwork", "gridExtra",
   "grid", "ggh4x",
   "stringr", "ggforce",
-  "argparse", "stringr"
+  "argparse", "stringr",
+  "Cairo"
 )
 
 for (i in list_of_packages) {
   if (!require(i, character.only = TRUE)) {
     install.packages(i)
   }
+  library( i, character.only = T )
 }
-
-library(ggplot2)
-library(reshape2)
-library(forcats)
-library(ggthemes)
-library(patchwork)
-library(grid)
-library(gridExtra)
-library(ggh4x)
-library(stringr)
-library(ggforce)
-library(stringr)
 
 # * Reading Command Line
 
@@ -136,7 +126,7 @@ arguments <- parser$parse_args()
 
 ## k2plot <-
 ##   ggplot(melted_data, aes(value, ID, fill = as.factor(variable))) +
-##   geom_col(color = "white", width = 2, linewidth = 0.001) +
+##   geom_col(color = "white", width = 0.99, linewidth = 0.005) +
 ##   facet_nested(
 ##     Location + Layer_3 + Layer_2 ~ .,
 ##     shrink = TRUE, solo_line = T,
@@ -144,7 +134,7 @@ arguments <- parser$parse_args()
 ##     independent = "x", drop = TRUE, render_empty = FALSE,
 ##     strip = strip_nested(
 ##       text_y = elem_list_text(angle = 0),
-##       by_layer_y = TRUE, size = "variable"
+##       by_layer_y = TRUE, size = "variable", clip = "off"
 ##     )
 ##   ) +
 ##   ## theme_minimal() +
@@ -154,8 +144,13 @@ arguments <- parser$parse_args()
 ##     y = "Ancestry"
 ##   ) +
 ##   theme(
-##     panel.spacing.y = unit(0.0001, "lines"),
-##     strip.text.y = element_text( margin = margin() ),
+##     title = element_text(size = 24),
+##     axis.title = element_blank(),
+##     panel.spacing.y = unit(0.05, "lines"),
+##     strip.text.y = element_text(
+##       size = 14,
+##       margin = margin( 5, 4, 5, 4, unit = "mm" )
+##     ),
 ##     axis.text.x = element_blank(),
 ##     axis.text.y = element_blank(),
 ##     panel.grid = element_blank(),
@@ -163,16 +158,61 @@ arguments <- parser$parse_args()
 ##     ## strip.text.y = element_text( angle = 180 ),
 ##     ggh4x.facet.nestline = element_line(colour = "blue")
 ##   ) +
-##   scale_y_discrete( expand = expansion( add = c(-0.3,-0.3) ) ) +
+##   scale_y_discrete( expand = expansion( mult = c(0.01,0.01) ) ) +
 ##   scale_x_continuous( expand = expansion( mult = c(0.01,0.01) ) ) +
 ##   ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
 ##   scale_fill_gdocs(guide = "none")
 
+## k2plot_pdf <-
+##   ggplot(melted_data, aes(value, ID, fill = as.factor(variable))) +
+##   geom_col(width = 0.99, color = "white", linewidth = 0.005) +
+##   facet_nested(
+##     Location + Layer_3 + Layer_2 ~ .,
+##     shrink = TRUE, solo_line = T,
+##     scales = "free", switch = "y", space = "free_y",
+##     independent = "x", drop = TRUE, render_empty = FALSE,
+##     strip = strip_nested(
+##       text_y = elem_list_text(angle = 0),
+##       by_layer_y = TRUE, size = "variable", clip = "off"
+##     )
+##   ) +
+##   ## theme_minimal() +
+##   labs(
+##     x = "Individuals",
+##     title = paste0(c("K=", kappa), collapse = ""),
+##     y = "Ancestry"
+##   ) +
+##   theme(
+##     title = element_text( size = 24 ),
+##     axis.title = element_blank(),
+##     panel.spacing.y = unit(0.4, "lines"),
+##     strip.text.y = element_text(
+##       size = 20,
+##       margin = margin( 5, 4, 5, 4, unit = "mm" )
+##     ),
+##     axis.text.x = element_blank(),
+##     axis.text.y = element_blank(),
+##     panel.grid = element_blank(),
+##     axis.ticks = element_blank(),
+##     ## strip.text.y = element_text( angle = 180 ),
+##     ggh4x.facet.nestline = element_line(colour = "blue")
+##   ) +
+##   ## facetted_pos_scales( y = 1 ) +
+##   scale_y_discrete( expand = expansion( mult = c(0.01,0.01) ) ) +
+##   scale_x_continuous( expand = expansion( mult = c(0.01,0.01) ) ) +
+##   ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
+##   scale_fill_gdocs(guide = "none")
+
+
 ## plot_file_name <- paste0(plot_folder, "/", prefix, kappa, ".png", collapse = "")
 ## dir.create(plot_folder, recursive = T)
 
-## png("/home/aggeliki/test_10.png", height = 3072, width = 2160)
+## Cairo( file = "/home/aggeliki/test_10.png", type = "png", height = 3072, width = 1240, dpi = 45, pointsize = 12 )
 ## k2plot
+## dev.off()
+
+## Cairo( file = "/home/aggeliki/test_10.pdf", type = "pdf", height = 3072, dpi = 45, pointsize = 12 )
+## k2plot_pdf
 ## dev.off()
 
 # * Debug off
@@ -257,7 +297,7 @@ for (q.file.name in q.files) {
 
   k2plot <-
     ggplot(melted_data, aes(value, ID, fill = as.factor(variable))) +
-    geom_col(color = "white", width = 2, linewidth = 0.001) +
+    geom_col(color = "white", width = 0.99, linewidth = 0.005) +
     facet_nested(
       Location + Layer_3 + Layer_2 ~ .,
       shrink = TRUE, solo_line = T,
@@ -265,7 +305,7 @@ for (q.file.name in q.files) {
       independent = "x", drop = TRUE, render_empty = FALSE,
       strip = strip_nested(
         text_y = elem_list_text(angle = 0),
-        by_layer_y = TRUE, size = "variable"
+        by_layer_y = TRUE, size = "variable", clip = "off"
       )
     ) +
     ## theme_minimal() +
@@ -275,10 +315,13 @@ for (q.file.name in q.files) {
       y = "Ancestry"
     ) +
     theme(
-      ## panel.spacing = unit(2, "mm"),
-      panel.spacing.y = unit(0.0001, "lines"),
-      ## panel.grid.major = element_line(color = "black"),
-      strip.text.y = element_text(margin = margin()),
+      title = element_text(size = 24),
+      axis.title = element_blank(),
+      panel.spacing.y = unit(0.05, "lines"),
+      strip.text.y = element_text(
+        size = 14,
+        margin = margin( 5, 4, 5, 4, unit = "mm" )
+      ),
       axis.text.x = element_blank(),
       axis.text.y = element_blank(),
       panel.grid = element_blank(),
@@ -286,14 +329,61 @@ for (q.file.name in q.files) {
       ## strip.text.y = element_text( angle = 180 ),
       ggh4x.facet.nestline = element_line(colour = "blue")
     ) +
-    ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
-    scale_y_discrete( expand = expansion( add = c(-0.3,-0.3) ) ) +
+    scale_y_discrete( expand = expansion( mult = c(0.01,0.01) ) ) +
     scale_x_continuous( expand = expansion( mult = c(0.01,0.01) ) ) +
+    ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
     scale_fill_gdocs(guide = "none")
-
+  
+  k2plot_pdf <-
+    ggplot(melted_data, aes(value, ID, fill = as.factor(variable))) +
+    geom_col(width = 0.99, color = "white", linewidth = 0.005) +
+    facet_nested(
+      Location + Layer_3 + Layer_2 ~ .,
+      shrink = TRUE, solo_line = T,
+      scales = "free", switch = "y", space = "free_y",
+      independent = "x", drop = TRUE, render_empty = FALSE,
+      strip = strip_nested(
+        text_y = elem_list_text(angle = 0),
+        by_layer_y = TRUE, size = "variable", clip = "off"
+      )
+    ) +
+    ## theme_minimal() +
+    labs(
+      x = "Individuals",
+      title = paste0(c("K=", kappa), collapse = ""),
+      y = "Ancestry"
+    ) +
+    theme(
+      title = element_text( size = 24 ),
+      axis.title = element_blank(),
+      panel.spacing.y = unit(0.4, "lines"),
+      strip.text.y = element_text(
+        size = 20,
+        margin = margin( 5, 4, 5, 4, unit = "mm" )
+      ),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      panel.grid = element_blank(),
+      axis.ticks = element_blank(),
+      ## strip.text.y = element_text( angle = 180 ),
+      ggh4x.facet.nestline = element_line(colour = "blue")
+    ) +
+    ## facetted_pos_scales( y = 1 ) +
+    scale_y_discrete( expand = expansion( mult = c(0.01,0.01) ) ) +
+    scale_x_continuous( expand = expansion( mult = c(0.01,0.01) ) ) +
+    ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
+    scale_fill_gdocs(guide = "none")
+  
   plot_file_name <- paste0(plot_folder, "/", prefix, kappa, ".png", collapse = "")
   print(plot_file_name)
-  png(plot_file_name, height = 3072, width = 2160)
+  Cairo( file = plot_file_name, type = "png", height = 3072, width = 1240, dpi = 45, pointsize = 12 )
   print(k2plot)
   dev.off()
+
+  plot_file_name_pdf <- paste0(plot_folder, "/", prefix, kappa, ".pdf", collapse = "")
+  print(plot_file_name_pdf)
+  Cairo(file = plot_file_name_pdf, type = "pdf", height = 3072, dpi = 45, pointsize = 12 )
+  print(k2plot_pdf)
+  dev.off()
+  
 }

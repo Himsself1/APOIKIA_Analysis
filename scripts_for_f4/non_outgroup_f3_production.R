@@ -331,22 +331,8 @@ f3_tenea_roman <- do.call(rbind, lapply(
 # ** Saving data
 
 save_statistics <- function(f3_output, file_name) {
-  ## Somehow sapply saves lists in a matrix format. Need to make it a data.frame
-  ## f3_output_2 <- data.frame(
-  ##   pop1 = unlist(f3_output[, 1]),
-  ##   pop2 = unlist(f3_output[, 2]),
-  ##   pop3 = factor(unlist(f3_output[, 3]),
-  ##                 levels = unlist(f3_output[, 3])[order(unlist(f3_output[, 4]))]
-  ##                 ),
-  ##   est = unlist(f3_output[, 4]),
-  ##   se = unlist(f3_output[, 5]),
-  ##   z = unlist(f3_output[, 6]),
-  ##   p = unlist(f3_output[, 7]),
-  ##   SNPs = unlist(f3_output[, 8])
-  ## )
   write.table(f3_output, file_name, quote = FALSE, sep = '\t', row.names = FALSE)
-}
-
+}q
 
 save_statistics(
   f3_ammotopos,
@@ -372,12 +358,14 @@ save_statistics(
   f3_amvrakia_classical,
   paste0( c( results_folder, "f3_amv_classical.tsv"), collapse = '/' )
 )
-
 save_statistics(
   f3_amvrakia_hellenistic,
   paste0( c( results_folder, "f3_amv_hellenistic.tsv"), collapse = '/' )
 )
-
+save_statistics(
+  f3_tenea_hellenistic,
+  paste0( c( results_folder, "f3_tenea_hellenistic.tsv"), collapse = '/' )
+)
 
 # * Plots
 
@@ -464,7 +452,7 @@ heatmap_for_f3 <- function(f3_results){
 ## )
 
 plot_ammotopos <- heatmap_for_f3(f3_ammotopos)
-plot_amv_archaic <- heatmap_for_f3(f3_amv_archaic)
+plot_amv_archaic <- heatmap_for_f3(f3_amvrakia_archaic)
 plot_tenea_archaic <- heatmap_for_f3(f3_tenea_archaic)
 plot_amv_classical <- heatmap_for_f3(f3_amvrakia_classical)
 plot_amv_hellenistic <- heatmap_for_f3(f3_amvrakia_hellenistic)

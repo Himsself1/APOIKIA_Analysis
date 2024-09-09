@@ -9,7 +9,8 @@ list_of_packages <- c(
   "patchwork", "gridExtra",
   "grid", "ggh4x",
   "stringr", "ggforce",
-  "argparse", "stringr"
+  "argparse", "stringr",
+  "Cairo"
 )
 
 for (i in list_of_packages) {
@@ -29,6 +30,7 @@ library(ggh4x)
 library(stringr)
 library(ggforce)
 library(stringr)
+library(Cairo)
 
 # * Reading Command Line
 
@@ -259,7 +261,7 @@ for (q.file.name in input_file) {
 
   k2plot <-
     ggplot(melted_data, aes(value, ID, fill = as.factor(variable))) +
-    geom_col(color = "white", width = 2, linewidth = 0.001) +
+    geom_col(position = "stack", width = 0.98, linewidth = 0.001) +
     facet_nested(
       Location + Layer_3 + Layer_2 ~ .,
       shrink = TRUE, solo_line = T,
@@ -272,16 +274,17 @@ for (q.file.name in input_file) {
     ) +
     ## theme_minimal() +
     labs(
-      x = "Individuals",
+      x = "Ancestry",
       title = paste0(c("K=", kappa), collapse = ""),
-      y = "Ancestry"
+      y = "Individuals"
     ) +
     theme(
       ## panel.spacing = unit(2, "mm"),
-      panel.spacing.y = unit(0.001, "lines"),
+      panel.spacing.y = unit(0.00001, "lines"),
       ## panel.grid.major = element_line(color = "black"),
       plot.title = element_text( size = 28 ),
-      strip.text.y = element_text(margin = margin(), size = 13),
+      axis.title = element_text( size = 24 ),
+      strip.text.y = element_text(margin = margin( 5,4,5,4, unit = "mm"), size = 13),
       axis.text.x = element_blank(),
       axis.text.y = element_blank(),
       panel.grid = element_blank(),
@@ -290,13 +293,18 @@ for (q.file.name in input_file) {
       ggh4x.facet.nestline = element_line(colour = "blue")
     ) +
     ## scale_x_discrete(label=function(x) abbreviate(x, minlength=3, strict = TRUE)) +
-    scale_y_discrete( expand = expansion( mult = c(-0.1,-0.1) ) ) +
+    scale_y_discrete( expand = expansion( mult = c(-0.01,-0.01) ) ) +
     scale_x_continuous( expand = expansion( mult = c(0.01,0.01) ) ) +
     scale_fill_gdocs(guide = "none")
 
   plot_file_name <- paste0(plot_folder, "/", "apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.geno_04.", kappa, ".Figure_2B.png", collapse = "")
   print(plot_file_name)
   png(plot_file_name, height = 2072, width = 1160)
+  print(k2plot)
+  dev.off()
+q
+  plot_file_name_pdf <- paste0(plot_folder, "/", "apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.geno_04.", kappa, ".Figure_2B.pdf", collapse = "")
+  Cairo(file = plot_file_name_pdf, type = "pdf", height = 2072,  dpi = 48, pointsize = 12)
   print(k2plot)
   dev.off()
 }

@@ -200,18 +200,17 @@ f3_tenea_archaic <- do.call(rbind, lapply(
   }
 ))
 
-## Only one individual is labeled as Tenea Archaic
-## ind_f3_tenea_archaic <- do.call(rbind, lapply(
-##   1:nrow(all_combinations),
-##   function(x) {
-##     individual_score_3(
-##       all_combinations[x, ],
-##       new_pops_arch[-indexes_to_ignore],
-##       apoikia_dataset$ind[[1]][-indexes_to_ignore],
-##       "~/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba"
-##     )
-##   }
-## ))
+ind_f3_tenea_archaic <- do.call(rbind, lapply(
+  1:nrow(all_combinations),
+  function(x) {
+    individual_score_3(
+      all_combinations[x, ],
+      new_pops_arch[-indexes_to_ignore],
+      apoikia_dataset$ind[[1]][-indexes_to_ignore],
+      "~/apoikia/EIGENSTRAT/new_dataset_01_02_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba"
+    )
+  }
+))
 
 
 

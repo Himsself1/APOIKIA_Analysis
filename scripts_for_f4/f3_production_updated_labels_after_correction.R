@@ -250,6 +250,20 @@ f3_tenea_archaic <- do.call(rbind, lapply(
   }
 ))
 
+ind_f3_tenea_archaic <- do.call(rbind, lapply(
+  1:nrow(all_combinations),
+  function(x) {
+    individual_score_3(
+      all_combinations[x, ],
+      c( flags$Archaic.550.480BCE., yor$ind[[3]] ),
+      c( flags$Genetic_ID, yor$ind[[1]] ),
+      data_prefix,
+      c( flags$APOIKIA_INDIVIDUALS, rep(NA, length(yor$ind[[3]])) )
+    )
+  }
+))
+all_tenea_archaic <- rbind(f3_tenea_archaic, ind_f3_tenea_archaic)
+
 # ** Classical Amvrakia
 
 pop1 <- "Yoruba"
@@ -441,12 +455,15 @@ save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_202
 save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_archaic.tsv")
 save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_roman.tsv")
 save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_archaic.tsv")
+save_statistics(f3_tenea_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_hellenistic.tsv")
 save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_early_roman.tsv")
 save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_classical.tsv")
 save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_hellenistic.tsv")
 
 save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_ammotopos.tsv")
 save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_archaic.tsv")
+save_statistics(ind_f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_archaic.tsv")
+save_statistics(ind_f3_tenea_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_hellenistic.tsv")
 save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_roman.tsv")
 save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_classical.tsv")
 save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_hellenistic.tsv")
@@ -550,6 +567,7 @@ inds_plot_ammotopos <- plot_general_with_inds(all_ammotopos)
 inds_plot_amv_archaic <- plot_general_with_inds(all_amv_archaic)
 inds_plot_amv_classical <- plot_general_with_inds(all_amvrakia_classical)
 inds_plot_amv_hellenistic <- plot_general_with_inds(all_amvrakia_hellenistic)
+inds_plot_tenea_archaic <- plot_general_with_inds(all_tenea_archaic)
 inds_plot_tenea_hellenistic <- plot_general_with_inds(all_tenea_hellenistic)
 inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
@@ -609,6 +627,10 @@ dev.off()
 
 png(paste0( c( yoruba_output, "/f3_tenea_hel_with_indiduals.png" ), collapse = '' ), height = 1240, width = 1240)
 inds_plot_tenea_hellenistic
+dev.off()
+
+png(paste0( c( yoruba_output, "/f3_tenea_arc_with_indiduals.png" ), collapse = '' ), height = 1240, width = 1240)
+inds_plot_tenea_archaic
 dev.off()
 
 png(paste0( c( yoruba_output, "/f3_tenea_roman_with_indiduals.png" ), collapse = '' ), height = 1240, width = 1240)
@@ -711,6 +733,21 @@ f3_tenea_archaic <- do.call(rbind, lapply(
     )
   }
 ))
+
+ind_f3_tenea_archaic <- do.call(rbind, lapply(
+  1:nrow(all_combinations),
+  function(x) {
+    individual_score_3(
+      all_combinations[x, ],
+      c( flags$Archaic.550.480BCE., han$ind[[3]] ),
+      c( flags$Genetic_ID, han$ind[[1]] ),
+      data_prefix,
+      c( flags$APOIKIA_INDIVIDUALS, rep(NA, length(han$ind[[3]])) )
+    )
+  }
+))
+all_tenea_archaic <- rbind(f3_tenea_archaic, ind_f3_tenea_archaic)
+
 
 # ** Classical Amvrakia
 
@@ -885,12 +922,15 @@ save_statistics(f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_202
 save_statistics(f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_archaic_han.tsv")
 save_statistics(f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_roman_han.tsv")
 save_statistics(f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_archaic_han.tsv")
+save_statistics(f3_tenea_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_hellenistic_han.tsv")
 save_statistics(f3_tenea_early_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_tenea_early_roman_han.tsv")
 save_statistics(f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_classical_han.tsv")
 save_statistics(f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/f3_amv_hellenistic_han.tsv")
 
 save_statistics(ind_f3_ammotopos, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_ammotopos_han.tsv")
 save_statistics(ind_f3_amv_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_archaic_han.tsv")
+save_statistics(ind_f3_tenea_archaic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_archaic_han.tsv")
+save_statistics(ind_f3_tenea_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_hellenistic_han.tsv")
 save_statistics(ind_f3_tenea_roman, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_tenea_roman_han.tsv")
 save_statistics(ind_f3_amvrakia_classical, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_classical_han.tsv")
 save_statistics(ind_f3_amvrakia_hellenistic, "~/apoikia/f3_outputs/f3_results/dataset_04_05_2024/ind_f3_amv_hellenistic_han.tsv")
@@ -912,6 +952,7 @@ inds_plot_ammotopos <- plot_general_with_inds(all_ammotopos)
 inds_plot_amv_archaic <- plot_general_with_inds(all_amv_archaic)
 inds_plot_amv_classical <- plot_general_with_inds(all_amvrakia_classical)
 inds_plot_amv_hellenistic <- plot_general_with_inds(all_amvrakia_hellenistic)
+inds_plot_tenea_archaic <- plot_general_with_inds(all_tenea_archaic)
 inds_plot_tenea_hellenistic <- plot_general_with_inds(all_tenea_hellenistic)
 inds_plot_tenea_roman <- plot_general_with_inds(all_tenea_roman)
 
@@ -967,6 +1008,10 @@ dev.off()
 
 png(paste0( c( han_output, "/f3_amv_hel_with_indiduals_han.png"), collapse = ''), height = 1240, width = 1240)
 inds_plot_amv_hellenistic
+dev.off()
+
+png(paste0( c( han_output, "/f3_tenea_arc_with_indiduals_han.png" ), collapse = '' ), height = 1240, width = 1240)
+inds_plot_tenea_archaic
 dev.off()
 
 png(paste0( c( han_output, "/f3_tenea_hel_with_indiduals_han.png"), collapse = ''), height = 1240, width = 1240)
