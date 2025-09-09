@@ -29,11 +29,11 @@ data_prefix <- "/home/aggeliki/apoikia/EIGENSTRAT/dataset_25_27_2025/APOIKIA_PLU
 
 yor = read_packedancestrymap(
   data_prefix,
-  pops = "Yoruba")
+  pops = "Yoruba.DG")
 
 han = read_packedancestrymap(
   data_prefix,
-  pops = "Han")
+  pops = "Han.DG")
 ## apoikia_dataset = read_packedancestrymap("~/apoikia/EIGENSTRAT/dataset_04_05_2024/APOIKIA_PLUS_PUBLIC_ANCIENT/apoikia_with_yoruba")
 
 ## individuals_to_ignore <- read.table("~/apoikia/APOIKIA_Analysis/admixture_analysis/remove_these_IDS_from_eigenstrat.txt",
