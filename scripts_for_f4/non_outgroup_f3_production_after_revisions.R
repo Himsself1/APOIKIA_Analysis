@@ -2,7 +2,8 @@
 
 list_of_packages <- c(
   "Hmisc", "devtools",
-  "ggplot2", "stringr"
+  "ggplot2", "stringr",
+  "forcats"
 )
 
 for (i in list_of_packages) {
@@ -390,50 +391,60 @@ heatmap_for_f3 <- function(f3_results){
 # ** All plots
 
 f3_ammotopos <- read.table(
-  paste0( c(results_folder, "f3_ammotopos.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_ammotopos_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_ammotopos <- f3_ammotopos[grep("Yoruba|Han", f3_ammotopos$pop3, invert = TRUE),]
 
-f3_amv_archaic <- read.table(
-  paste0( c(results_folder, "f3_amv_archaic.tsv"), collapse = '/' ),
+
+f3_amvrakia_archaic <- read.table(
+  paste0( c(results_folder, "f3_amv_archaic_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_amvrakia_archaic <- f3_amvrakia_archaic[grep("Yoruba|Han", f3_amvrakia_archaic$pop3, invert = TRUE),]
 
 f3_amvrakia_classical <- read.table(
-  paste0( c(results_folder, "f3_amv_classical.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_amv_classical_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_amvrakia_classical <- f3_amvrakia_classical[grep("Yoruba|Han", f3_amvrakia_classical$pop3, invert = TRUE),]
 
 f3_amvrakia_hellenistic <- read.table(
-  paste0( c(results_folder, "f3_amv_hellenistic.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_amv_hellenistic_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_amvrakia_hellenistic <- f3_amvrakia_hellenistic[grep("Yoruba|Han", f3_amvrakia_hellenistic$pop3, invert = TRUE),]
 
 f3_tenea_archaic <- read.table(
-  paste0( c(results_folder, "f3_tenea_archaic.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_tenea_archaic_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_tenea_archaic <- f3_tenea_archaic[grep("Yoruba|Han", f3_tenea_archaic$pop3, invert = TRUE),]
 
 f3_tenea_hellenistic <- read.table(
-  paste0( c(results_folder, "f3_tenea_hellenistic.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_tenea_hellenistic_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_tenea_hellenistic <- f3_tenea_hellenistic[grep("Yoruba|Han", f3_tenea_hellenistic$pop3, invert = TRUE),]
 
 f3_tenea_early_roman <- read.table(
-  paste0( c(results_folder, "f3_tenea_early_roman.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_tenea_early_roman_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_tenea_early_roman <- f3_tenea_early_roman[grep("Yoruba|Han", f3_tenea_early_roman$pop3, invert = TRUE),]
 
 f3_tenea_roman <- read.table(
-  paste0( c(results_folder, "f3_tenea_roman.tsv"), collapse = '/' ),
+  paste0( c(results_folder, "f3_tenea_roman_non_outgroup.tsv"), collapse = '/' ),
   sep = '\t', header = T
 )
+f3_tenea_roman <- f3_tenea_roman[grep("Yoruba|Han", f3_tenea_roman$pop3, invert = TRUE),]
+
 
 plot_ammotopos <- heatmap_for_f3(f3_ammotopos)
-plot_amv_archaic <- heatmap_for_f3(f3_amvrakia_archaic)
+plot_amvrakia_archaic <- heatmap_for_f3(f3_amvrakia_archaic)
 plot_tenea_archaic <- heatmap_for_f3(f3_tenea_archaic)
-plot_amv_classical <- heatmap_for_f3(f3_amvrakia_classical)
-plot_amv_hellenistic <- heatmap_for_f3(f3_amvrakia_hellenistic)
+plot_amvrakia_classical <- heatmap_for_f3(f3_amvrakia_classical)
+plot_amvrakia_hellenistic <- heatmap_for_f3(f3_amvrakia_hellenistic)
 plot_tenea_hellenistic <- heatmap_for_f3(f3_tenea_hellenistic)
 plot_tenea_early_roman <- heatmap_for_f3(f3_tenea_early_roman)
 plot_tenea_roman <- heatmap_for_f3(f3_tenea_roman)
@@ -445,7 +456,7 @@ plot_ammotopos
 dev.off()
 
 png(paste0( c( plot_folder, "f3_amv_arch_non_outgroup.png" ), collapse = '/'), height = 1240, width = 1240)
-plot_amv_archaic
+plot_amvrakia_archaic
 dev.off()
 
 png(paste0( c( plot_folder, "f3_tenea_arch_non_outgroup.png" ), collapse = '/'), height = 1240, width = 1240)
@@ -453,11 +464,11 @@ plot_tenea_archaic
 dev.off()
 
 png(paste0( c( plot_folder, "f3_amv_class_non_outgroup.png" ), collapse = '/'), height = 1240, width = 1240)
-plot_amv_classical
+plot_amvrakia_classical
 dev.off()
 
 png(paste0( c( plot_folder, "f3_amv_hel_non_outgroup.png" ), collapse = '/'), height = 1240, width = 1240)
-plot_amv_hellenistic
+plot_amvrakia_hellenistic
 dev.off()
 
 png(paste0( c( plot_folder, "f3_tenea_hel_non_outgroup.png" ), collapse = '/'), height = 1240, width = 1240)

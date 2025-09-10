@@ -400,7 +400,7 @@ for (q.file.name in input_file) {
   dev.off()
   
   plot_file_name_pdf <- paste0(plot_folder, "/", "apoikia.1240K.ANCIENT.LD_200_25_06.trimmed.geno_04.", kappa, ".Figure_2B_splitted.pdf", collapse = "")
-  Cairo(file = plot_file_name_pdf, type = "pdf", height = 1920, width = 1240,  dpi = 34, pointsize = 30)
+  Cairo(file = plot_file_name_pdf, type = "pdf", height = 1920, width = 1240,  dpi = 45, pointsize = 30)
   grid.arrange( grobs = plot_pdf, nrow = 1, top = textGrob(
     paste0(c("K = ", kappa), collapse = ''),
     gp = gpar( fontsize = 50 )

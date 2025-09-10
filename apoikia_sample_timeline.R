@@ -31,7 +31,7 @@ location <- factor(
     rep("Amvrakia", 15),
     rep("Tenea", 9)
   ),
-  levels = c("Tenea", "Amvrakia","Ammotopos*"),
+  levels = c("Ammotopos*", "Amvrakia", "Tenea"),
   ordered = T
   )  
 
@@ -52,7 +52,7 @@ lower_estimate <- c(
 high_estimate <- c(
   -1200, -1200,                       # Bronze age Ammotopos
   -500, -525, -480,                   # Amvrakia Archaic
-  -330,                               # Amvrakia Archaic to Roman
+  330,                                # Amvrakia Archaic to Roman
   -350, -425, -375, -450, -350, -350, # Amvrakia Classical
   -125, -200, -125, -125, -100,       # Amvrakia Hellenistic
   -480, -500,                         # Tenea Archaic
@@ -92,45 +92,19 @@ to_plot$Age <- factor(
 
 plotting <- ggplot(
   to_plot,
-  aes( x = Date, y = ID, fill = Age )
+  aes( x = Date, y = ID, color = Age )
 )
-## plotting  <- plotting + geom_point(
-##   shape = 15, size = 1.2, position = position_dodge(width = 0.5)
-## )
-## plotting  <- plotting + geom_jitter(
-##   height = 0.18, width = 0.25, shape = 15, size = 1.2
-## )
-## plotting  <- plotting + geom_pointrange(
-##   aes( xmin = low, xmax = high), size = 0.6,
-##   position = position_jitter( height = 0.2, width = 0.01 )
-## )
-## plotting  <- plotting + theme_minimal()
-## plotting  <- plotting + theme(
-##   legend.title = element_blank(),
-##   panel.grid.major.x = element_blank(),
-##   panel.grid.minor = element_blank(),
-##   panel.grid.major.y = element_line(
-##     linetype = "dashed",
-##     color = "black", size = 0.25
-##   ),
-##   panel.border = element_rect( color = "darkgray", linewidth = 0.3, fill = "transparent"),
-##   axis.text.x = element_text( size = 15 ),
-##   axis.text.y = element_text( size = 18 ),
-##   axis.title = element_blank(),
-##   legend.text = element_text( size = 16 ),
-##   legend.key = element_rect( color = "white", fill = "gray80" )
-## )
-plotting <- plotting + geom_bar( stat = "identity")
-plotting <- plotting + geom_errorbar( aes( xmin = low, xmax = high ), width = 0.4, alpha = 0.8 )
-## plotting <- plotting + coord_cartesian( xlim = c(-2000, NA) )
-plotting  <- plotting + scale_fill_aaas( alpha = 0.5 )
+plotting <- plotting + geom_point( stat = "identity", alpha = 1)
+plotting <- plotting + geom_errorbar( aes( xmin = low, xmax = high ), width = 0.8, alpha = 0.7 )
+plotting <- plotting + scale_color_jco()
+## plotting  <- plotting + scale_colour_brewer(palette = "Pastel2")
+## scale_fill_aaas( alpha = 0.5 )
 plotting  <- plotting + scale_x_continuous(
   transform = scales::new_transform( offset, function(x){x+1500}, function(x){x-1500} )
 )
 plotting  <- plotting + facet_nested(
   Site ~.,
   scales = "free_y", space = "free_y", shrink = TRUE,
-  ## switch = "y",
   render_empty = FALSE,
   solo_line = T, nest_line = TRUE,
   strip = strip_nested(
@@ -147,7 +121,6 @@ plotting  <- plotting + theme(
   panel.grid = element_blank(),
   panel.background = element_blank()
 )
-
 
 pdf(
   "/home/aggeliki/apoikia/APOIKIA_Analysis/timeline_plot_after_revisions.pdf",

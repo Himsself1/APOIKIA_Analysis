@@ -337,6 +337,7 @@ plotted_boxes <- plotted_boxes + ylab( "F3" )
 plotted_boxes <- plotted_boxes + theme(
   axis.title = element_blank(),
   legend.title = element_blank(),
+  axis.title.y = element_text( size = 16, angle = 0, vjust = 0.5 ),
   axis.text.x = element_text( size = 14 ),
   axis.text.y = element_text( size = 13 ),
   legend.text = element_text( size = 14 )

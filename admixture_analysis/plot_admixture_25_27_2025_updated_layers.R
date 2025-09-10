@@ -67,11 +67,11 @@ func_for_plotting <- function( melted_data ){
     ) +
     theme(
       ## panel.spacing = unit(2, "mm"),
-      panel.spacing.y = unit(0.00001, "lines"),
+      panel.spacing.y = unit(0.2, "lines"),
       ## panel.grid.major = element_line(color = "black"),
       plot.title = element_blank(),
       axis.title = element_blank(),
-      strip.text.y = element_text(margin = margin( 5,4,5,4, unit = "mm"), size = 18),
+      strip.text.y = element_text(margin = margin( 5,4,5,4, unit = "mm"), size = 25),
       axis.text.x = element_blank(),
       axis.text.y = element_blank(),
       panel.grid = element_blank(),
@@ -104,11 +104,11 @@ func_for_plotting_pdf <- function( melted_data ){
     ) +
     theme(
       ## panel.spacing = unit(2, "mm"),
-      panel.spacing.y = unit(0.00001, "lines"),
+      panel.spacing.y = unit(0.01, "lines"),
       ## panel.grid.major = element_line(color = "black"),
       plot.title = element_blank(),
       axis.title = element_blank(),
-      strip.text.y = element_text(margin = margin( 5,4,5,4, unit = "mm"), size = 20),
+      strip.text.y = element_text(margin = margin( 5,4,5,4, unit = "mm"), size = 35),
       axis.text.x = element_blank(),
       axis.text.y = element_blank(),
       panel.grid = element_blank(),
@@ -125,7 +125,7 @@ func_for_plotting_pdf <- function( melted_data ){
 
 # * Debug
 
-# ** Variables for debugging purposes
+## # ** Variables for debugging purposes
 
 ## meta_file <- "/home/aggeliki/apoikia/EIGENSTRAT/dataset_25_27_2025/APOIKIA_PLUS_PUBLIC_ANCIENT_PLUS_OUTGROUPS/trimmed_data_maf_005_no_relatives/apoikia.1240K.ANCIENT_plus_Yoruba_Han.LD_200_25_04.trimmed.geno_04.fam"
 ## input_folder <- "~/apoikia/admixture_logs/dataset_25_27_2025/haploid_no_paleo/LD_04/geno_08"
@@ -220,7 +220,7 @@ func_for_plotting_pdf <- function( melted_data ){
 ##   plot_pdf[[i]] <- func_for_plotting_pdf( melted_to_plot[melted_to_plot$Sthlh == i,] )
 ## }
 
-## Cairo( file = "/home/aggeliki/test_10.png", type = "png", height = 1920, width = 1440, dpi = 28, pointsize = 10, bg = "white" )
+## Cairo( file = "/home/aggeliki/test_10.png", type = "png", height = 1920, width = 1440, dpi = 28, pointsize = 12, bg = "white" )
 ## grid.arrange( grobs=plot_png,
 ##              nrow = 1, top = textGrob(
 ##   paste0(c("K = ", kappa), collapse = ''),
@@ -228,7 +228,7 @@ func_for_plotting_pdf <- function( melted_data ){
 ## ))
 ## dev.off()
 
-## Cairo(file = "/home/aggeliki/test_10.pdf", type = "pdf", height = 1440, width = 1240,  dpi = 35, pointsize = 12)
+## Cairo(file = "/home/aggeliki/test_10.pdf", type = "pdf", height = 1920, width = 1240,  dpi = 35, pointsize = 12)
 ## grid.arrange( grobs=plot_pdf,
 ##              nrow = 1, top = textGrob(
 ##   paste0(c("K = ", kappa), collapse = ''),
@@ -335,7 +335,7 @@ for (q.file.name in q.files) {
   
   plot_file_name <- paste0(plot_folder, "/", prefix, kappa, ".png", collapse = "")
   print(plot_file_name)
-  Cairo( file = plot_file_name, type = "png", height = 1920, width = 1440, dpi = 28, pointsize = 10, bg = "white" )
+  Cairo( file = plot_file_name, type = "png", height = 1920, width = 1440, dpi = 28, pointsize = 12, bg = "white" )
   grid.arrange( grobs = plot_png, nrow = 1, top = textGrob(
     paste0(c("K = ", kappa), collapse = ''),
     gp = gpar( fontsize = 50 )
@@ -344,7 +344,7 @@ for (q.file.name in q.files) {
   
   plot_file_name_pdf <- paste0(plot_folder, "/", prefix, kappa, ".pdf", collapse = "")
   print(plot_file_name_pdf)
-  Cairo(file = plot_file_name_pdf, type = "pdf", height = 1440, width = 1240,  dpi = 35, pointsize = 12)
+  Cairo(file = plot_file_name_pdf, type = "pdf", height = 1920, width = 1240,  dpi = 35, pointsize = 12)
   grid.arrange( grobs = plot_pdf, nrow = 1, top = textGrob(
     paste0(c("K = ", kappa), collapse = ''),
     gp = gpar( fontsize = 50 )
